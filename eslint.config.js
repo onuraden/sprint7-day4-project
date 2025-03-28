@@ -29,5 +29,10 @@ export default [
         { allowConstantExport: true },
       ],
     },
-  },
+    
+    extends: [
+    "plugin:cypress/recommended"
+  ]
+},
+  
 ]

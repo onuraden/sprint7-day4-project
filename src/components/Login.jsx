@@ -17,7 +17,7 @@ const initialForm = {
   terms: false,
 };
 
-const errorMessages = {
+export const errorMessages = {
   email: 'Please enter a valid email address',
   password: 'Password must include at least one upperCase, one lowerCase, number and special characters',
 };
@@ -41,7 +41,7 @@ export default function Login() {
       );
   };
 
-  let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+  let regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&_])[A-Za-z\d@.#$!%*?&_]{8,15}$/;
 
   const handleChange = (event) => {
     let { name, value, type } = event.target;
@@ -116,8 +116,9 @@ export default function Login() {
           type="email"
           onChange={handleChange}
           value={form.email}
+          data-cy="email-input"
         />
-        {errors.email && <FormFeedback> {errorMessages.email}</FormFeedback>}
+        {errors.email && <FormFeedback data-cy="error-message"> {errorMessages.email}</FormFeedback>}
       </FormGroup>
       <FormGroup>
         <Label for="examplePassword">Password</Label>
@@ -129,9 +130,10 @@ export default function Login() {
           type="password"
           onChange={handleChange}
           value={form.password}
+          data-cy="pass-input"
         />
         {errors.password && (
-          <FormFeedback> {errorMessages.password}</FormFeedback>
+          <FormFeedback data-cy="error-message"> {errorMessages.password}</FormFeedback>
         )}
       </FormGroup>
       <FormGroup check>
@@ -142,13 +144,14 @@ export default function Login() {
           checked={form.terms}
           type="checkbox"
           onChange={handleChange}
+          data-cy="terms-input"
         />{' '}
         <Label htmlFor="terms" check>
           I agree to terms of service and privacy policy
         </Label>
       </FormGroup>
       <FormGroup className="text-center p-4">
-        <Button color="primary" disabled={!isValid}>
+        <Button color="primary" disabled={!isValid} data-cy="button-input">
           Sign In
         </Button>
       </FormGroup>
